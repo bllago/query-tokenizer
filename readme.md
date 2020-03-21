@@ -1,105 +1,51 @@
-# React NPM package boilerplate
+# Query tokenizer
 
-Boilerplate for building a react component as NPM package.
-
-⚡️ Build NPM modules for your ReactJS project incredibly fast.
-
-✅ ES5, ES6 compatible
-
-✅ ReactJS ^16.6.1
+This package can help you to extract keywords (tokens) from search query ⚡️
 
 ------------
 
-### ➡️ How to start?
+### ➡️ Installation
 
-1. **Clone** project into your working directory using 
+`npm install --save query-tokenizer`
 
-ssh: `git clone git@github.com:bllago/react-npm-package-boilerplate.git` 
+or 
 
-or
-
-https: `git clone https://github.com/bllago/react-npm-package-boilerplate.git`
-
-2. Switch to the **react-npm-package-boilerplate** directory 
-
-`cd react-npm-package-boilerplate`
-
-3. Run 
-
-`npm install`
-
-or
-
-`yarn install`
-
-4. Open react-npm-package-boilerplate **/src/index.js** in your favorite IDE and start work on your awesome NPM package
+`yarn add query-tokenizer`
 
 ------------
 
-### ➡️ How to change GIT remote origin?
+### ➡️ Usage
 
-1. Run `git remote remove origin`
-2. Run `git remote add origin <link_to_your_repo_here>`
+To import package write
 
-------------
+`import { getTokens, getBigram, getTrigram } from 'query-tokenizer'`
 
-### ➡️ How to build component?
+Than
 
-1. Just run `npm run build` or `yarn build`. After that, you will see generated **index.js** file in your root folder *(react-npm-package-boilerplate/)*
+`const tokens = getTokens('I am looking for javascript developer who knows reactjs', 'en')`
 
-------------
+Where first parameter - query and second one - lang.
 
-### ➡️ How to test component locally?
+It will return array with keywords
 
-1. Get your NPM package (project) path. Run `pwd` in your terminal and copy path
+`['javascript', 'developer', 'reactjs']`
 
-2. Create test project. Run:
+To get Bigram write
 
-`npx create-react-app my-test-project`
+`const bigrams = getBigram(['javascript', 'developer', 'reactjs'])`
 
-3. Swith to the **my-test-project** directory:
+It will return 
 
-`cd my-test-project`
+`[['javascript', 'developer'], ['developer', 'reactjs']]`
 
-4. Run:
-
-`yarn add <paste copied path here>`
-
-5. Import component
-
-`import Component from 'react-npm-package-boilerplate'`
-
-`<Component />`
-
-6. Success
+The same with trigram
 
 ------------
 
-### ➡️ How to add peerDependencies?
+### ➡️ Suported languages
 
-1. Open **package.json** file, find "peerDependencies" section and add dependencies there
-
-------------
-
-### ➡️ How to publish NPM package
-
-Step 1: Use `publishConfig` option in your package.json
-
-`"publishConfig": { "registry": "https://npm.pkg.github.com/" }`
-
-Step 2: Authenticate
-
-`$ npm login --registry=https://npm.pkg.github.com/`
-
-`Step 3: Publish`
-
-$ npm publish
-
-------------
-
-### ➡️ Troubleshooting
-
-[How to handle peer dependencies when developing modules](https://dev.to/yvonnickfrin/how-to-handle-peer-dependencies-when-developing-modules-18fa "How to handle peer dependencies when developing modules")
+1. English
+2. Norwegian
 
 ------------
 
@@ -110,12 +56,6 @@ If you're reading this, you're awesome! Thank you for helping us make this proje
 [Contributor covenant](https://www.contributor-covenant.org/ "Contributor covenant")
 
 [How to contribute to an open-source project on Github](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
-
-------------
-
-### ➡️ Inspired by
-
-[Manoj Singh Negi](https://medium.com/@manojsinghnegi)
 
 ------------
 
