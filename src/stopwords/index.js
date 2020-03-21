@@ -1,4 +1,4 @@
-import en from './en'
-import no from './no'
+import en from './en';
+import no from './no';
 
-export { en, no }
+export { en, no };

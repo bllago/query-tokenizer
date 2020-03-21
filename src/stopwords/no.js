@@ -267,6 +267,6 @@ const stopwords = {
   gammel: true,
   'en gang': true,
   ett: true
-}
+};
 
-export default stopwords
+export default stopwords;

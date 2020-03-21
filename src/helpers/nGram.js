@@ -1,34 +1,35 @@
 function nGram(n) {
-  if (typeof n !== 'number' || isNaN(n) || n < 1 || n === Infinity) {
-    throw new Error('`' + n + '` is not a valid argument for n-gram')
+  if (typeof n !== 'number' || n < 1 || n === Infinity) {
+    throw new Error(`\`${n}\` is not a valid argument for n-gram`);
   }
-
-  return grams
 
   function grams(value) {
-    var nGrams = []
-    var index
+    const nGrams = [];
+    let index;
 
     if (value === null || value === undefined) {
-      return nGrams
+      return nGrams;
     }
 
-    value = value.slice ? value : String(value)
-    index = value.length - n + 1
+    const valueChecked = value.slice ? value : String(value);
+    index = valueChecked.length - n + 1;
 
     if (index < 1) {
-      return nGrams
+      return nGrams;
     }
 
-    while (index--) {
-      nGrams[index] = value.slice(index, index + n)
+    while (index) {
+      nGrams[index] = valueChecked.slice(index, index + n);
+      index -= 1;
     }
 
-    return nGrams
+    return nGrams;
   }
+
+  return grams;
 }
 
-nGram.bigram = nGram(2)
-nGram.trigram = nGram(3)
+nGram.bigram = nGram(2);
+nGram.trigram = nGram(3);
 
-export default nGram
+export default nGram;

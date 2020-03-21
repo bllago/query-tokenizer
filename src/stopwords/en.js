@@ -569,6 +569,6 @@ const stopwords = {
   yourselves: true,
   z: true,
   zero: true
-}
+};
 
-export default stopwords
+export default stopwords;
