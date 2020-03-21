@@ -1,5 +1,5 @@
 import { en, no } from './stopwords';
-// import nGram from './helpers/nGram';
+import nGram from './helpers/nGram';
 
 const stopWordsByLangMap = { en, no };
 const defaultLang = 'en';
@@ -10,14 +10,12 @@ const getTokens = (query, lang) => {
   const queryWords = query && query.split(splittingRegExp);
   const filteredWords = queryWords && queryWords.filter(word => word !== '');
   const wordsFormatted = filteredWords && filteredWords.map(word => word.toLowerCase());
-  const tokens = wordsFormatted.filter(word => !stopwords[word]);
+  const tokens = wordsFormatted && wordsFormatted.filter(word => !stopwords[word]);
 
-  return [...new Set(tokens)];
+  return tokens ? [...new Set(tokens)] : [];
 };
 
-// const getBigram = tokens => nGram.bigram(tokens);
-// const getTrigram = tokens => nGram.trigram(tokens);
+const getBigram = tokens => nGram.bigram(tokens);
+const getTrigram = tokens => nGram.trigram(tokens);
 
-export default getTokens;
-
-export { getTokens };
+export { getTokens, getBigram, getTrigram };
