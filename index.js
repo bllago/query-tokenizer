@@ -46,9 +46,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getTrigram = exports.getBigram = exports.getTokens = void 0;
 
-var _stopwords = require("./stopwords");
+var _stopwords = require("./src/stopwords");
 
-var _nGram = _interopRequireDefault(require("./helpers/nGram"));
+var _nGram = _interopRequireDefault(require("./src/helpers/nGram"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
