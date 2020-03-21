@@ -1,12 +1,13 @@
 {
-  "name": "react-npm-package-boilerplate",
-  "version": "1.0.1",
-  "description": "Boilerplate for building a react component as NPM package",
+  "name": "query-tokenizer",
+  "version": "1.0.0",
+  "description": "Get keywords (tokens) from any search query",
   "main": "index.js",
   "private": false,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./node_modules/.bin/babel src --out-file index.js"
+    "build": "./node_modules/.bin/babel src --out-file index.js",
+    "prepare": "install-peers"
   },
   "keywords": [
     "reactjs",
@@ -27,8 +28,6 @@
     "@babel/core": "^7.8.7",
     "@babel/preset-env": "^7.8.7",
     "@babel/preset-react": "^7.8.3",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "eslint": "^6.6.0",
@@ -42,7 +41,10 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.2.0",
-    "prettier": "^1.18.2"
+    "install-peers-cli": "^2.2.0",
+    "prettier": "^1.18.2",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
   },
   "eslintConfig": {
     "extends": "./eslintrc.js"
