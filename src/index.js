@@ -33,9 +33,9 @@ const getTokens = (query) => {
   const wordsFormatted = filteredWords && filteredWords.map(word => word.toLowerCase());
   const tokens = wordsFormatted && wordsFormatted.filter(word => !stopwords[word]);
   const allTokens = extractedEmails && tokens ? [...extractedEmails, ...tokens] : tokens;
-  const combinedTokensArr = combine(tokens, 2);
-  const extendedTokens = generateExtendedTokens(combinedTokensArr);
-  const resultTokens = [...allTokens, ...extendedTokens];
+  const combinedTokensArr = tokens && combine(tokens, 2);
+  const extendedTokens = combinedTokensArr && generateExtendedTokens(combinedTokensArr);
+  const resultTokens = allTokens && extendedTokens ? [...allTokens, ...extendedTokens] : allTokens;
 
   return resultTokens ? [...new Set(resultTokens)] : [];
 };
