@@ -1,11 +1,16 @@
 import { en, no } from './stopwords';
 import allStopwords from './stopwords/all';
 import nGram from './helpers/nGram';
+import combine from './helpers/combine';
 
 const stopWordsByLangMap = { en, no };
 const defaultLang = 'en';
-const emailRegExp = new RegExp(/\S+[a-z0-9]@[a-z0-9\.]+/img);
+const emailRegExp = new RegExp(/\S+[a-z0-9]@[a-z0-9]+/img);
 const splittingRegExp = new RegExp(/[&/\\#.,!?+() $~%:*<>{}]/g);
+
+const generateExtendedTokens = (combinedTokens) => {
+  combinedTokens.map(item => item.join(' '));
+};
 
 const getTokensByLang = (query, lang) => {
   const stopwords = lang ? stopWordsByLangMap[lang] : defaultLang;
@@ -13,8 +18,11 @@ const getTokensByLang = (query, lang) => {
   const filteredWords = queryWords && queryWords.filter(word => word !== '');
   const wordsFormatted = filteredWords && filteredWords.map(word => word.toLowerCase());
   const tokens = wordsFormatted && wordsFormatted.filter(word => !stopwords[word]);
+  const combinedTokensArr = combine(tokens, 2);
+  const extendedTokens = generateExtendedTokens(combinedTokensArr);
+  const resultTokens = [...tokens, ...extendedTokens];
 
-  return tokens ? [...new Set(tokens)] : [];
+  return resultTokens ? [...new Set(resultTokens)] : [];
 };
 
 const getBigram = tokens => nGram.bigram(tokens);
@@ -28,11 +36,8 @@ const getTokens = (query) => {
   const wordsFormatted = filteredWords && filteredWords.map(word => word.toLowerCase());
   const tokens = wordsFormatted && wordsFormatted.filter(word => !stopwords[word]);
   const allTokens = extractedEmails && tokens ? [...extractedEmails, ...tokens] : tokens;
-  const bigrams = getBigram(allTokens);
-  const trigrams = getTrigram(allTokens);
-  const resultTokens = allTokens && [...allTokens, ...bigrams, ...trigrams];
 
-  return resultTokens ? [...new Set(resultTokens)] : [];
+  return allTokens ? [...new Set(allTokens)] : [];
 };
 
 export {

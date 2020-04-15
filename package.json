@@ -1,6 +1,6 @@
 {
   "name": "query-tokenizer",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Get keywords (tokens) from any search query",
   "main": "./lib/index.js",
   "private": false,
