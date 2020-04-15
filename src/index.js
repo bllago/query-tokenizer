@@ -18,11 +18,8 @@ const getTokensByLang = (query, lang) => {
   const filteredWords = queryWords && queryWords.filter(word => word !== '');
   const wordsFormatted = filteredWords && filteredWords.map(word => word.toLowerCase());
   const tokens = wordsFormatted && wordsFormatted.filter(word => !stopwords[word]);
-  const combinedTokensArr = combine(tokens, 2);
-  const extendedTokens = generateExtendedTokens(combinedTokensArr);
-  const resultTokens = [...tokens, ...extendedTokens];
 
-  return resultTokens ? [...new Set(resultTokens)] : [];
+  return tokens ? [...new Set(tokens)] : [];
 };
 
 const getBigram = tokens => nGram.bigram(tokens);
@@ -36,8 +33,11 @@ const getTokens = (query) => {
   const wordsFormatted = filteredWords && filteredWords.map(word => word.toLowerCase());
   const tokens = wordsFormatted && wordsFormatted.filter(word => !stopwords[word]);
   const allTokens = extractedEmails && tokens ? [...extractedEmails, ...tokens] : tokens;
+  const combinedTokensArr = combine(tokens, 2);
+  const extendedTokens = generateExtendedTokens(combinedTokensArr);
+  const resultTokens = [...allTokens, ...extendedTokens];
 
-  return allTokens ? [...new Set(allTokens)] : [];
+  return resultTokens ? [...new Set(resultTokens)] : [];
 };
 
 export {
