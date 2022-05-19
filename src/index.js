@@ -1,7 +1,8 @@
 import { en, no } from './stopwords';
+
 import allStopwords from './stopwords/all';
-import nGram from './helpers/nGram';
 import combine from './helpers/combine';
+import nGram from './helpers/nGram';
 
 const stopWordsByLangMap = { en, no };
 const defaultLang = 'en';
@@ -9,6 +10,7 @@ const emailRegExp = new RegExp(/\S+[a-z0-9]@[a-z0-9]+/img);
 const splittingRegExp = new RegExp(/[&/\\#.,!?+() $~%:*<>{}]/g);
 
 const generateExtendedTokens = combinedTokens => combinedTokens.map(item => item.join(' '));
+
 
 const getTokensByLang = (query, lang) => {
   const stopwords = lang ? stopWordsByLangMap[lang] : defaultLang;
